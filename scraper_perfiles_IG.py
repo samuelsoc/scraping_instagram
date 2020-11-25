@@ -22,13 +22,13 @@ import sys
 L = instaloader.Instaloader()
 
 # Login or load session
-USERNAME =  'samuelrg.sna'#'literaturaemprende'#'chileentuojo'#'freedata_univ'#cuenta usuario
-PASSWORD =   'mU9drgY9eZGBR5B'#'89648685rr'#'89648685ee'#'.-_qJA$m2rZh57+'#password usuario
+USERNAME =  ''#cuenta usuario
+PASSWORD =   ''##password usuario
 L.login(USERNAME, PASSWORD)
 
 # traer lista de usuarios
 # editar nombrearchivo con el nombre del archivo
-data = pd.read_csv('~/scrapIG/meta_followings_connie/ig_user_5.csv', sep =' ')
+data = pd.read_csv('~/ruta/delarchivo/conlista/cuentas.csv', sep =' ')
 # editar nombre de la columna que tine los usuarios
 user_list = data['cuentas']
 maxlen = len(user_list)
