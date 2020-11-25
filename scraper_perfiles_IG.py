@@ -6,7 +6,7 @@
 
 #scraper_IG
 
-# librerias
+# librerias necesarias
 import instaloader
 import time
 from time import sleep
