@@ -35,7 +35,8 @@ maxlen = len(user_list)
 
 
 # crar nombre del archivo
-nombrearchivo = 'listaMuna'
+# la extesion sera .csv
+nombrearchivo = 'nombredearchivo'
 
 
 # lista con las cuentas a scrapear
