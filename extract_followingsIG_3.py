@@ -86,7 +86,7 @@ for cuenta in CUENTAS:
 
             if contador1 == descanso1:
                timeDelay2 = random.randrange(min2,max2)
-               print ("Reseteo contador a las: %s" % time.ctime())
+               print ("Reseteo contador1 a las: %s" % time.ctime())
                print('Van: ',i,' cuentas recolectadas')
                contador = 0
                print('Durmiendo ',delaySleep,' minutos...')
