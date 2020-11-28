@@ -92,7 +92,7 @@ for followee in profile.get_followers():
 
     i = i + 1
     datos = pd.DataFrame(data, columns=['followers'])
-    datos.to_csv('followers_' + CUENTA + '_.csv')
+    datos.to_csv('followers_' + CUENTA + '.csv')
 
 print("Inicio Recolección: %s" % starttime)
 print("Fin Recolección: %s" % time.ctime())
