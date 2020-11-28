@@ -77,7 +77,7 @@ for followee in profile.get_followers():
        print ("Reseteo contador a las: %s" % time.ctime())
        print('Van: ',i,' cuentas recolectadas')
        contador = 0
-       print('Durmiendo ',delaySleep,' minutos...')
+       print('Durmiendo ',timeDelay2,' minutos...')
        sleep(timeDelay2 * 60) # segundos multiplicados
        print ("Recolectando otra vez a las: %s" % time.ctime())
 
@@ -86,7 +86,7 @@ for followee in profile.get_followers():
             print ("Reseteo contador2 a las: %s" % time.ctime())
             print('Van: ',i,' cuentas recolectadas')
             contador2 = 0
-            print('Durmiendo',timeDelay2,'minutos...')
+            print('Durmiendo',timeDelay3,'minutos...')
             sleep(timeDelay3 * 60) # valor random multiplicado por minuto
             print ("Recolectando otra vez a las: %s" % time.ctime())
 
