@@ -57,8 +57,8 @@ max3 = 45
 # valores limites descansos
 # si se cambian estos valores deben ser multiplos
 
-descanso1 = 1500
-descanso2 = 15000
+descanso1 = 1000
+descanso2 = 10000
 
 # iterador sobre cada followers de la cuenta
 print ("Inicio Recolección: %s" % time.ctime())
@@ -76,19 +76,19 @@ for followee in profile.get_followers():
        timeDelay2 = random.randrange(min2,max2)
        print ("Reseteo contador a las: %s" % time.ctime())
        print('Van: ',i,' cuentas recolectadas')
-       contador = 0
+       contador1 = 0
        print('Durmiendo ',timeDelay2,' minutos...')
        sleep(timeDelay2 * 60) # segundos multiplicados
        print ("Recolectando otra vez a las: %s" % time.ctime())
 
        if contador2 == descanso2:
-            timeDelay3 = random.randrange(min3,max3)
-            print ("Reseteo contador2 a las: %s" % time.ctime())
-            print('Van: ',i,' cuentas recolectadas')
-            contador2 = 0
-            print('Durmiendo',timeDelay3,'minutos...')
-            sleep(timeDelay3 * 60) # valor random multiplicado por minuto
-            print ("Recolectando otra vez a las: %s" % time.ctime())
+          timeDelay3 = random.randrange(min3,max3)
+          print ("Reseteo contador2 a las: %s" % time.ctime())
+          print('Van: ',i,' cuentas recolectadas')
+          contador2 = 0
+          print('Durmiendo',timeDelay3,'minutos...')
+          sleep(timeDelay3 * 60) # valor random multiplicado por minuto
+          print ("Recolectando otra vez a las: %s" % time.ctime())
 
     i = i + 1
     datos = pd.DataFrame(data, columns=['followers'])
