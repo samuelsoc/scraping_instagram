@@ -37,7 +37,7 @@ profile = instaloader.Profile.from_username(L.context, CUENTA)
 # contador para controlar la cantidad de scrapeada
 contador1 = 0
 contador2 = 0
-i = 1
+i = 0
 data = []
 
 # variable tiempo inicio recoleccion
