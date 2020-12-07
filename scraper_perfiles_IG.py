@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 @author: samuelrg
+
+Instalar libreria instaloader:
+pip3 install --upgrade instaloader
 """
+
 
 #scraper_IG
 
@@ -28,38 +32,45 @@ L.login(USERNAME, PASSWORD)
 
 # traer lista de usuarios
 # editar nombrearchivo con el nombre del archivo
-data = pd.read_csv('~/ruta/delarchivo/conlista/cuentas.csv', sep =' ')
-# editar nombre de la columna que tine los usuarios
-user_list = data['cuentas']
+data = pd.read_csv('/ruta/archivo/muestra.txt',sep =' ',names=['cuenta'])
+# editar nombre de la columna que tiene los usuarios
+user_list = list(data['cuenta'])
+# ultima posicion de la lista
 maxlen = len(user_list)
-
-
-# crar nombre del archivo
+# crear nombre del archivo
 # la extesion sera .csv
-nombrearchivo = 'nombredearchivo'
+nombrearchivo = ''
 
 
 # lista con las cuentas a scrapear
-listacuentas = user_list[601:maxlen]
-#listacuentas
+# como es una lista puedes seleccionar el rango especifico ej: user_list[601:maxlen]
+listacuentas = user_list
 print('########## Iniciando Extraccion #########')
 print ("Inicio Recolección: %s" % time.ctime())
 
+# parametros rango segundos de espera, para delaySleep
+# tiene un rango entre 5 y 20 segundos de espera random por cada iteracion
+min = 5
+max = 15
 # loops de extraccion
 for cuenta in listacuentas:
 
     try:
-       delaySleep = random.randrange(5,20)
+       delaySleep = random.randrange(min,max)
 
        profile = instaloader.Profile.from_username(L.context, cuenta)
 
        username = profile.username
        followers = profile.followers
        followees = profile.followees
+       publi = profile.mediacount
+       fullname = profile.full_name
 
        meta = {'usuario': username,
             'followers':followers,
-            'followings':followees}
+            'followings':followees,
+            'publicaciones':publi,
+            'fullname':fullname}
 
        metadata = pd.DataFrame([meta])
 
