@@ -32,7 +32,7 @@ L.login(USERNAME, PASSWORD)
 
 # traer lista de usuarios
 # editar nombrearchivo con el nombre del archivo
-data = pd.read_csv('/ruta/archivo/muestra.txt',sep =' ',names=['cuenta'])
+data = pd.read_csv('archivomuestras.txt',sep =' ',names=['cuenta'])
 # editar nombre de la columna que tiene los usuarios
 user_list = list(data['cuenta'])
 # ultima posicion de la lista
@@ -65,12 +65,14 @@ for cuenta in listacuentas:
        followees = profile.followees
        publi = profile.mediacount
        fullname = profile.full_name
+       privada = profile.is_private
 
        meta = {'usuario': username,
             'followers':followers,
             'followings':followees,
             'publicaciones':publi,
-            'fullname':fullname}
+            'fullname':fullname,
+            'privada':privada }
 
        metadata = pd.DataFrame([meta])
 
