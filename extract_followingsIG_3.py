@@ -66,8 +66,8 @@ max3 = 45
 # valores limites descansos
 # si se cambian estos valores deben ser multiplos
 
-descanso1 = 1500
-descanso2 = 15000
+descanso1 = 1000
+descanso2 = 10000
 
 # iterador sobre cada followers de la cuenta
 
