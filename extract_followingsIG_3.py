@@ -19,6 +19,7 @@ import pandas as pd
 from datetime import datetime
 import sys
 import os
+from tqdm import tqdm
 
 
 # crear instancia
@@ -32,14 +33,14 @@ L.login(USERNAME, PASSWORD)
 
 # crea carpeta nueva dentro del directorio para ir descarcango los resultados
 ruta = os.getcwd()
-nuevacarpeta = ruta + '/PERFILES_pub'
+nuevacarpeta = ruta + '/FOLLOWINGS'
 os.mkdir(nuevacarpeta)
 
 # cuenta a scrapear
-usuarios = pd.read_csv('lista_usuarios.csv')
+usuarios = pd.read_csv('/ruta/archivo_muestra.csv')
 
 # verificar el nombre de la columna que tiene las cuentas que seran scrapeadas
-users = usuarios['USER']
+users = usuarios['usuario']
 CUENTAS =  users.to_list()
 
 
@@ -55,7 +56,7 @@ starttime = time.ctime()
 # parametros rango segundos de espera, para timeDelay
 # timeDelay1 segundos entre cada extraccion
 min1 = 2
-max1 = 10
+max1 = 6
 # timeDelay2 espera al llegar al descanso1
 min2 = 15
 max2 = 25
@@ -71,7 +72,7 @@ descanso2 = 10000
 
 # iterador sobre cada followers de la cuenta
 
-for cuenta in CUENTAS:
+for cuenta in tqdm(CUENTAS):
     try:
         print ("Inicio Recolección: %s" % time.ctime())
         print ("Cuenta:",cuenta)
@@ -102,10 +103,10 @@ for cuenta in CUENTAS:
                   sleep(timeDelay3 * 60) # valor random multiplicado por minuto
                   print ("Recolectando otra vez a las: %s" % time.ctime())
 
-        i = i + 1
-        datos = pd.DataFrame(data, columns=['followings'])
-        datos.to_csv(nuevacarpeta +'/' + cuenta + '_.csv')
-        data = []
+            i = i + 1
+            datos = pd.DataFrame(data, columns=['followings'])
+            datos.to_csv(nuevacarpeta +'/' + cuenta + '.csv')
+            data = []
 
     except Exception as error:
            print("No existe:", cuenta)
