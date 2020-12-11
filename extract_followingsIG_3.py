@@ -37,13 +37,12 @@ nuevacarpeta = ruta + '/FOLLOWINGS'
 os.mkdir(nuevacarpeta)
 
 # cuenta a scrapear
-usuarios = pd.read_csv('/ruta/archivo_muestra.csv')
-
+usuarios = pd.read_csv('ruta/archivomuestras.csv')
 # verificar el nombre de la columna que tiene las cuentas que seran scrapeadas
 users = usuarios['usuario']
 CUENTAS =  users.to_list()
-
-
+# lista con la cantidad de followings por usario
+cantidad = usuarios['followings'].to_list()
 # contador para controlar la cantidad de scrapeada
 contador1 = 0
 contador2 = 0
@@ -55,29 +54,29 @@ starttime = time.ctime()
 
 # parametros rango segundos de espera, para timeDelay
 # timeDelay1 segundos entre cada extraccion
-min1 = 2
-max1 = 6
+min1 = 0
+max1 = 3
 # timeDelay2 espera al llegar al descanso1
 min2 = 15
 max2 = 25
 # timeDelay3 al llegar descanso2
-min3 = 35
-max3 = 45
+min3 = 45
+max3 = 55
 
 # valores limites descansos
 # si se cambian estos valores deben ser multiplos
 
-descanso1 = 1000
-descanso2 = 10000
+descanso1 = 1500
+descanso2 = 15000
 
 # iterador sobre cada followers de la cuenta
 
-for cuenta in tqdm(CUENTAS):
+for cuenta, cant in tqdm(zip(CUENTAS, cantidad), total=len(cantidad)):
     try:
         print ("Inicio Recolección: %s" % time.ctime())
-        print ("Cuenta:",cuenta)
+        print ("Cuenta:",cuenta, 'tiene:',cant,'followings')
         profile = instaloader.Profile.from_username(L.context, cuenta)
-        for followee in profile.get_followees():
+        for followee in tqdm(profile.get_followees()):
             timeDelay1 = random.randrange(min1,max1)
             username = followee.username
             data.append(username)
@@ -103,10 +102,10 @@ for cuenta in tqdm(CUENTAS):
                   sleep(timeDelay3 * 60) # valor random multiplicado por minuto
                   print ("Recolectando otra vez a las: %s" % time.ctime())
 
-            i = i + 1
-            datos = pd.DataFrame(data, columns=['followings'])
-            datos.to_csv(nuevacarpeta +'/' + cuenta + '.csv')
-            data = []
+        i = i + 1
+        datos = pd.DataFrame(data, columns=['followings'])
+        datos.to_csv(nuevacarpeta +'/' + cuenta + '.csv')
+        data = []
 
     except Exception as error:
            print("No existe:", cuenta)
