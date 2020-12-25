@@ -18,6 +18,8 @@ import random
 import pandas as pd
 from datetime import datetime
 import sys
+from tqdm import tqdm
+
 
 
 
@@ -53,7 +55,7 @@ print ("Inicio Recolección: %s" % time.ctime())
 min = 5
 max = 15
 # loops de extraccion
-for cuenta in listacuentas:
+for cuenta in tqdm(listacuentas):
 
     try:
        delaySleep = random.randrange(min,max)
@@ -79,7 +81,7 @@ for cuenta in listacuentas:
        with open(nombrearchivo + '.csv', 'a') as f:
             metadata.to_csv(f, header=f.tell()==0)
 
-       print(cuenta,'OK')
+       #print(cuenta,'OK')
        sleep(delaySleep)
 
     except Exception as error:
