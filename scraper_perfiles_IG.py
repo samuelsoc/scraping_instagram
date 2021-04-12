@@ -6,10 +6,6 @@
 Instalar libreria instaloader:
 pip3 install --upgrade instaloader
 """
-
-
-#scraper_IG
-
 # librerias necesarias
 import instaloader
 import time
@@ -20,29 +16,22 @@ from datetime import datetime
 import sys
 from tqdm import tqdm
 
-
-
-
-
 # crear instancia
 L = instaloader.Instaloader()
 
-# Login or load session
-USERNAME =  ''#cuenta usuario
-PASSWORD =   ''##password usuario
-L.login(USERNAME, PASSWORD)
-
 # traer lista de usuarios
 # editar nombrearchivo con el nombre del archivo
-data = pd.read_csv('archivomuestras.txt',sep =' ',names=['cuenta'])
-# editar nombre de la columna que tiene los usuarios
+# en caso de que sea un .txt
+#data = pd.read_csv('archivomuestras.txt',sep =' ',names=['cuenta'])
+
+data = pd.read_csv('nombrearchivo.csv')
+# editar nombre de la columna que tiene los usuarios, de ser necesario
 user_list = list(data['cuenta'])
 # ultima posicion de la lista
 maxlen = len(user_list)
 # crear nombre del archivo
-# la extesion sera .csv
+# la extension sera .csv
 nombrearchivo = ''
-
 
 # lista con las cuentas a scrapear
 # como es una lista puedes seleccionar el rango especifico ej: user_list[601:maxlen]
