@@ -7,6 +7,7 @@ autor: samuelrg
 4. De todos los perfiles deja solo los publicos con menos de 5K followings
 5. Guarda un archivo final con los followers publicos para aplciar extraccion
  de followings
+6. No es necesario logearse con una cuenta fake 
 """
 
 # librerias necesarias
