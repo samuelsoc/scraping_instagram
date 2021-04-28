@@ -7,7 +7,7 @@ autor: samuelrg
 4. De todos los perfiles deja solo los publicos con menos de 5K followings
 5. Guarda un archivo final con los followers publicos para aplciar extraccion
  de followings
-6. No es necesario logearse con una cuenta fake 
+6. No es necesario logearse con una cuenta fake
 """
 
 # librerias necesarias
@@ -62,7 +62,7 @@ print ("Inicio Recolección: %s" % time.ctime())
 # parametros rango segundos de espera, para delaySleep
 # tiene un rango entre 5 y 20 segundos de espera random por cada iteracion
 min = 2
-max = 8
+max = 10
 # loops de extraccion
 for cuenta in tqdm(listacuentas):
 
