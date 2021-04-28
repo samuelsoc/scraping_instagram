@@ -26,6 +26,7 @@ L = instaloader.Instaloader()
 print('cargando archivo')
 
 namefile = 'followers_muletdechile.csv'
+nombreperfiles =
 nombrefinal = 'pub_mulet.csv' # archivo final con los perfiles publicos, usar para extraccion de followings
 
 folder = os.getcwd() # carpeta donde esta el archivo con todos los followers
@@ -87,6 +88,8 @@ for cuenta in tqdm(listacuentas):
 
        metadata = pd.DataFrame([meta])
 
+       with open(folder + '/'+nombreperfiles, 'a') as f:
+            metadata.to_csv(f, header=f.tell()==0)
 
        sleep(delaySleep)
 
@@ -99,7 +102,9 @@ print("---------------------------------------------------")
 
 print("Filtrando perfiles publicos")
 # filtro para dejar solo perfiles publicos
-df_pub = metadata[metadata['privada']==False]
+perfiles = pd.read_csv(nombreperfiles)
+print('Prefiles recolectados: {}'.format(len(perfiles)))
+df_pub = perfiles[perfiles['privada']==False]
 # filtro dejar solo cuentas con menos de 5k followings
 df_pub=df_pub[df_pub['followings']<5000]
 print("Publicos con menos de 5k followings:{}".format(len(df_pub)))
