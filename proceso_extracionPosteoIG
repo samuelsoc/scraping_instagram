@@ -1,0 +1,33 @@
+
+ EXTRACCION POSTS CUENTA IG
+
+ pip install instagram-scraper --upgrade
+
+- Crear env python
+
+- entrar a carpeta donde se creo el env
+cd scrapIG/
+
+-Activar env
+source webscraping/bin/activate
+
+instagram-scraper 'lavinjoaquin'  --media-metadata --media-types none
+
+
+
+joseantoniokast
+instagram-scraper 'joseantoniokast'  --media-metadata --media-types none
+# CUENTAS
+
+@virginiademariaoficial
+@jpqueralto
+@carlococinachile
+@pangalandrade
+@franciscosaavedr
+@mikelzulueta
+@k3lcalderon
+@marioruiz
+@lenguasdegato
+@miguel_layun
+
+gonzalo.winter
