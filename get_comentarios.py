@@ -5,8 +5,8 @@ import pandas as pd
 L = instaloader.Instaloader()
 
 # Login or load session
-USERNAME =  'laura_duartemartin'#cuenta usuario
-PASSWORD =   'Bots2020'#password usuario
+USERNAME =  ''#cuenta usuario
+PASSWORD =   ''#password usuario
 L.login(USERNAME, PASSWORD)
 
 
