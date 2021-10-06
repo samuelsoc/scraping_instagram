@@ -1,5 +1,9 @@
 import instaloader
 import pandas as pd
+import time
+from time import sleep
+import random
+import os
 
 # crear instancia
 L = instaloader.Instaloader()
@@ -10,29 +14,38 @@ PASSWORD =   ''#password usuario
 L.login(USERNAME, PASSWORD)
 
 
-idpost='CT0QjT_suhm'
+ruta = os.getcwd()+ '/comentariospost'
+os.mkdir(ruta)
 
-post = instaloader.Post.from_shortcode(L.context, idpost)
+idpostt = pd.read_csv('listado_id_comentarios.csv')
+#idpostt = idpostt.head(2)
+idpostt =  idpostt['shortcode'].to_list()
 
-comments_from_loop_including_answers = []
-user = []
-fecha = []
 
-for comment in post.get_comments():
-    comments_from_loop_including_answers.append(comment.text)
-    user.append(comment.owner)
-    fecha.append(comment.created_at_utc)
-    for answer in comment.answers:
-        comments_from_loop_including_answers.append(answer.text)
+def scrape_comentario(idpost):
+    post = instaloader.Post.from_shortcode(L.context, idpost)
+    comments_from_loop_including_answers = []
+    user = []
+    fecha = []
+    
+    for comment in post.get_comments():
+        comments_from_loop_including_answers.append(comment.text)
         user.append(comment.owner)
         fecha.append(comment.created_at_utc)
+        for answer in comment.answers:
+            comments_from_loop_including_answers.append(answer.text)
+            user.append(comment.owner)
+            fecha.append(comment.created_at_utc)
+            
+    df = pd.DataFrame({'usuario':user,
+                       'comentario':comments_from_loop_including_answers,
+                       'fecha':fecha,
+                       'idpost':idpost})
 
-
-df = pd.DataFrame({'usuario':user,
-                   'comentario':comments_from_loop_including_answers,
-                   'fecha':fecha,
-                   'idpost':idpost})
-
-
-print(df)
-df.to_csv(f'comentarios_post_{idpost}.csv')
+    print(df)
+    df.to_csv(ruta +'/'+f'comentarios_post_{idpost}.csv')
+    sleep(random.randrange(0,30))
+    
+for idpost in idpostt:
+    print(idpost)
+    scrape_comentario(idpost)
